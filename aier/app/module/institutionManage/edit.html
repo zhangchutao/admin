@@ -1,0 +1,269 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">添加机构</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="institutionForm"  >
+                    <!--机构名称-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name"> 机构名称 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" id="name" ng-model="institutionData.name"  required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="institutionForm.name.$error" ng-if="institutionForm.name.$touched">
+                                    <div ng-message="required">机构名称不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--所属品牌 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="brand"> 所属品牌 </label>
+                        <div class="col-sm-9">
+                            <!--<select class="form-control brand" name="brand"  id="brand" ng-model="institutionData.brand">-->
+                                <select class=" brand form-control" id="brand"></select>
+                            <!--<option ng-repeat="items in brand" value="{{items.id}}">{{items.brand}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                    <!--机构区域商圈-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 机构区域商圈 </label>
+                        <!--<div class="col-sm-5">-->
+                            <!--<select name="province" class="form-control" ng-init="province.id='0'" ng-model="province.id" ng-change="provinceChange(province.id);city.id='0';" ng-options="id as name for (id,name) in provinceArr"></select>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-4">-->
+                            <!--<select name="city" class="form-control" ng-init="city.id='0'" ng-model="city.id" ng-change="cityChange(city.id);" ng-options="id as name for (id,name) in getCityArr"></select>-->
+                        <!--</div>-->
+
+                        <div class="col-sm-5">
+                            <select class="businessArea form-control" ></select>
+                            <!--<select name="province" class="form-control" ng-model="institutionData.businessArea" ng-change="areaChange(institutionData.businessArea)" >-->
+                                <!--<option value="">&#45;&#45;区&#45;&#45;</option>-->
+                                <!--<option ng-repeat="items in area" value="{{items}}">{{items.name}}</option>-->
+                            <!--</select>-->
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="businessAddress form-control" ></select>
+                            <!--<select name="city" class="form-control" ng-model="institutionData.businessAddress" ng-change="addressChangeChange(institutionData.businessAddress);" >-->
+                                <!--<option value="">&#45;&#45;地方名&#45;&#45;</option>-->
+                                <!--<option ng-repeat="items in businessAddress" value="{{items.id}}">{{items.name}}</option>-->
+                            <!--</select>-->
+                        </div>
+                    </div>
+
+                    <!--类别 -->
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label col-sm-2" > 所属类别 </label>-->
+                        <!--<div class="col-sm-9">-->
+                            <!--&lt;!&ndash;<select class="multiple-select2 form-control"  multiple="multiple"  id="category" name="category">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<optgroup label="" >&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option >California</option>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option value="NV">Nevada</option>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option value="OR">Oregon</option>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option value="WA">Washington</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</optgroup>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                            <!--<select class="js-example-basic-single js-states form-control" id="id_label_single" multiple="multiple"></select>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="col-sm-2"></div>-->
+                            <!--<div class="col-md-9">-->
+                                <!--<div class="text-danger line-height-30" ng-messages="institutionForm.category.$error" ng-if="institutionForm.category.$touched">-->
+                                    <!--<div ng-message="required"><i class="icon-info"></i>所属类别不能为空</div>-->
+                                    <!--<div ng-messages-include="app/templates/formValidation.html"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+                    <!--机构地址-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="address"> 机构地址 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  name="address" id="address"  ng-model="institutionData.address" required/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="institutionForm.address.$error" ng-if="institutionForm.address.$touched">
+                                    <div ng-message="required">机构地址不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--位置-经纬度-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="latitudeLongitude"> 位置-经度 </label>
+                        <div class="col-sm-9">
+                            <!--<input type="text" class="form-control" ng-model="formData.longitude" name="longitude" id="longitude" placeholder="请输入经度" required />-->
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="latitudeLongitude" placeholder="如 114.021091,22.540516" id="latitudeLongitude" ng-model="institutionData.latitudeLongitude" required/>
+                                <span class="input-group-addon" style="background-color: #00acac"><a href="http://lbs.amap.com/console/show/picker" target="_blank"><i class="fa fa-map-marker " style="color: white" ></i></a></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="institutionForm.latitudeLongitude.$error" ng-if="institutionForm.latitudeLongitude.$touched">
+                                    <div ng-message="required">经纬度不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--学生人数-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="studentNum"> 学生人数 </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="studentNum" id="studentNum" placeholder="例如 180" ng-model="institutionData.studentNum"  required/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="institutionForm.studentNum.$error" ng-if="institutionForm.studentNum.$touched">
+                                    <div ng-message="required">学生人数不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--电话号码-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="contact"> 电话号码 </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" ng-model="institutionData.contact" name="contact" id="contact" placeholder="请输入电话号码" required  phone/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="institutionForm.contact.$error" ng-if="institutionForm.contact.$touched">
+                                    <div ng-message="required">电话号码不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--标签-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 标签 </label>
+                        <div class="col-sm-9" >
+                            <select class="js-example-basic-single js-states form-control"  multiple="multiple" ng-model="institutionData.tags" name="tags" id="tags" required></select>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="institutionForm.tags.$error" ng-if="institutionForm.tags.$touched">
+                                    <div ng-message="required">标签不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--到点礼-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="gifts" style="padding-top: 0px"> 到店礼 <br>(多个礼品 使用 | 分割) </label>
+                        <div class="col-sm-9" >
+                            <input  id="gifts" class="form-control" ng-model="institutionData.gifts" name="gifts" placeholder="如:七田真小雨伞" />
+                        </div>
+                    </div>
+                    <!--描述-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="desc">描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="desc" rows="5"  id="desc" ng-maxlength="200" ng-model="institutionData.desc"  ></textarea>
+                        </div>
+                    </div>
+                    <!--认证-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 认证 </label>
+                        <div class="col-md-9">
+                            <div class="fl" >
+                                <label for="trueRadio" class="icheck-radio">
+                                    <input type="radio" id="trueRadio" name="certification" value="yes" ng-model="institutionData.certification" ng-checked="true">
+                                    <div class="icheck-media"></div>
+                                    <div class="icheck-inner">
+                                        <div class="icheck-title">是</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="fl margin-left-20" >
+                                <label for="falseRadio" class="icheck-radio">
+                                    <input type="radio" id="falseRadio" name="certification" value="no" ng-model="institutionData.certification" >
+                                    <div class="icheck-media"></div>
+                                    <div class="icheck-inner">
+                                        <div class="icheck-title">否</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--图片
+                        图片上传逻辑:上传图片后,获取到图片的id和路径,将其保存到数组中,
+                        如果要更改图片,则通过更改图片接口,上传当前图片的id和新图片文件,然后接受图片的路径
+                    -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 图片 <br>(首张作为封面,640*480) </label>
+                        <div class="col-sm-9" >
+                            <div class="z_photo upimg-div clear" >
+                                <!--选择后展示的图片-->
+
+                                <div ng-repeat="images in imgArray">
+                                    <section class="up-section fl " ng-repeat="oneImage in images">
+                                        <!--hover的黑色透明浮层-->
+                                        <!--<span class="up-span"></span>-->
+                                        <i class="ion-ios-close fa-2x text-success close-upimg"></i>
+                                        <!--这里设置成点击可以再次上次图片,如果不要这个功能,那么可以去掉外面这一层div-->
+                                        <div class="fl" type="file" ngf-select="uploadImg($file)" ngf-pattern="'image/*'">
+                                            <img  ngf-src="oneImage" alt="" class="up-img " >
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
+                                    <!--删除按钮-->
+                                    <i class="ion-ios-close fa-2x text-success close-upimg"></i>
+                                    <div class="fl" type="file" ngf-select="uploadImg($file)" ngf-pattern="'image/*'">
+                                        <img  ngf-src="oneImage" alt="" class="up-img " >
+                                    </div>
+
+                                </section>
+
+
+                                <!--上传图片-->
+                                <section class="z_file fl">
+                                    <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
+                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="save()">保存</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

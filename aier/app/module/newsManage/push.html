@@ -1,0 +1,129 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">手动消息推送</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="newsForm"  >
+                    <!--消息标题-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="title"> 消息标题 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="title" id="title" ng-model="data.title" placeholder="请输入消息标题" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="newsForm.title.$error" ng-if="newsForm.title.$touched">
+                                    <div ng-message="required">消息标题不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--消息简介 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="newsIntr"> 消息简介 </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="newsIntr" rows="5"  id="newsIntr" ng-maxlength="200" ng-model="data.newsIntr"  ></textarea>
+                        </div>
+                    </div>
+
+                    <!--消息类型-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 消息类型 </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <div >
+                                    <label for="offerCodeRadio" class="icheck-radio">
+                                        <input type="radio" id="offerCodeRadio" name="newsType" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">优惠码</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div >
+                                    <label for="reservationRadio" class="icheck-radio">
+                                        <input type="radio" id="reservationRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">预约</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div >
+                                    <label for="courseRadio" class="icheck-radio">
+                                        <input type="radio" id="courseRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">课程卡</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div >
+                                    <label for="activityRadio" class="icheck-radio fl col-sm-2">
+                                        <input type="radio" id="activityRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">活动</div>
+                                        </div>
+                                    </label>
+                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px">
+                                        <input type="text" class="form-control "  placeholder="活动链接" required />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--发送对象-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 发送对象 </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <div >
+                                    <label for="allUserRadio" class="icheck-radio">
+                                        <input type="radio" id="allUserRadio" name="pushUser" value="allUser" ng-model="activityForm.content" ng-checked="true">
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">所有用户</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div >
+                                    <label for="partUserRadio" class="icheck-radio fl col-sm-2">
+                                        <input type="radio" id="partUserRadio" name="pushUser" value="partUser" ng-model="activityForm.content" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">部分用户</div>
+                                        </div>
+                                    </label>
+                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px">
+                                        <textarea class="form-control" name="description" rows="5"  id="description" ng-maxlength="200" ng-model="data.description"  ></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">保存</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

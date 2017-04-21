@@ -1,0 +1,85 @@
+<div class="invoice">
+    <div class="invoice-company">
+                    <span class="pull-right hidden-print">
+                        <a href="#/order/refund?order={{order.order_no}}" class="btn btn-sm btn-success m-b-10" ng-if="order.status == 'PAIED'">退款</a>
+                        <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
+                                class="fa fa-print m-r-5"></i> 打印订单</a>
+                    </span>
+        订单编号： {{order.order_no}}
+    </div>
+    <div class="invoice-header">
+        <div class="invoice-from">
+            <small>机构</small>
+            <address class="m-t-5 m-b-5">
+                <strong>{{org.name}}</strong><br>
+                {{org.address}}<br>
+                {{org.phone}}
+            </address>
+        </div>
+        <div class="invoice-to">
+            <small>用户</small>
+            <address class="m-t-5 m-b-5">
+                <strong>{{userinfo.nickname}}</strong><br>
+                {{user.cell}}
+            </address>
+        </div>
+        <div class="invoice-date">
+            <small>订单状态</small>
+            <div class="date m-t-5">{{order.created_at}}</div>
+            <div class="invoice-detail">
+                {{order.status}}<br>
+                {{order.pay_method}} - {{order.pay_time * 1000 || '-' | date:'yyyy-MM-dd HH:mm:ss'}}<br>
+                {{order.refund_order}} - {{order.refund_time * 1000 || '-' | date:'yyyy-MM-dd HH:mm:ss'}}
+            </div>
+        </div>
+    </div>
+    <div class="invoice-content">
+        <div class="table-responsive">
+            <table class="table table-invoice">
+                <thead>
+                <tr>
+                    <th>课程</th>
+                    <th>价格（元）</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{course.name}} - {{course.desc}}
+                    </td>
+                    <td>{{(order.price/100).toFixed(2)}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="invoice-price">
+            <div class="invoice-price-left">
+                <div class="invoice-price-row">
+                    <div class="sub-price">
+                        <small></small>
+
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-price-right">
+                <small>总计</small>
+                ¥ {{(order.price/100).toFixed(2)}} 元
+            </div>
+        </div>
+    </div>
+    <!--<div class="invoice-note">-->
+    <!--* Make all cheques payable to [Your Company Name]<br>-->
+    <!--* Payment is due within 30 days<br>-->
+    <!--* If you have any questions concerning this invoice, contact  [Name, Phone Number, Email]-->
+    <!--</div>-->
+    <div class="invoice-footer text-muted">
+        <p class="text-center m-b-5">
+            THANK YOU FOR YOUR BUSINESS
+        </p>
+        <p class="text-center">
+            <!--<span class="m-r-10"><i class="fa fa-globe"></i> matiasgallipoli.com</span>-->
+            <!--<span class="m-r-10"><i class="fa fa-phone"></i> T:016-18192302</span>-->
+            <!--<span class="m-r-10"><i class="fa fa-envelope"></i> rtiemps@gmail.com</span>-->
+        </p>
+    </div>
+</div>

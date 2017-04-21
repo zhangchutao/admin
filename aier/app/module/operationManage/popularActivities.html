@@ -1,0 +1,64 @@
+<div>
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- begin panel -->
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <button type="file" ngf-select="uploadImg($file)" class="btn btn-xs btn-icon btn-circle btn-success">+
+                        </button>
+                    </div>
+                    <h4 class="panel-title">首页推荐热门活动</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="text-align-center">排序</th>
+                            <th class="text-align-center">活动id</th>
+                            <th class="text-align-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                            <td class="text-align-center"><input class="" style="width: 30px;" type="text" ></td>
+                            <td class="text-align-center"><input class=""  type="text" ></td>
+                            <td style="text-align: center">
+                                <a href="" >编辑活动</a> |
+                                <a href="" >连接</a> |
+                                <a href="" >删除</a> |
+                                <a href="" >图片</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12" style="text-align: center">
+                            <button type="submit" class="btn btn-success width-xs "  ng-click="a()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+
+<style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: middle !important;
+        border-top: 1px solid #ddd;
+    }
+
+    .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+        border: 1px solid #e2e7eb;
+    }
+
+    .text-align-center{
+        text-align: center;
+    }
+</style>

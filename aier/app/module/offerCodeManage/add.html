@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">添加优惠码</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="offerCodeForm"  >
+                    <!--优惠码标题-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="title"> 优惠码标题 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="title" id="title" ng-model="data.title" placeholder="请输入优惠码标题" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="offerCodeForm.title.$error" ng-if="offerCodeForm.title.$touched">
+                                    <div ng-message="required">优惠码标题不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--指定课程-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="course"> 指定课程 </label>
+                        <div class="col-sm-9">
+                            <select class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-white" id="course">
+                                <option value="" selected>Select a Country</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AS">American Samoa</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="offerCodeForm.title.$error" ng-if="offerCodeForm.title.$touched">
+                                    <div ng-message="required">优惠码标题不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--有效期-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 有效期 </label>
+                        <div class="col-sm-9">
+                            <div class="input-group input-daterange">
+                                <input type="text" class="form-control" name="start" placeholder="开始时间" required/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end" placeholder="结束时间" required/>
+                            </div>
+                        </div>
+                        <!--<div>-->
+                            <!--<div class="col-sm-2"></div>-->
+                            <!--<div class="col-md-9">-->
+                                <!--<div class="text-danger line-height-30" ng-messages="offerCodeForm.duration.$error" ng-if="offerCodeForm.duration.$touched">-->
+                                    <!--<div ng-message="required"> <a class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>时长不能为空</div>-->
+                                    <!--<div ng-messages-include="app/templates/formValidation.html"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <!--适用门店-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="shop"> 适用门店 </label>
+                        <div class="col-sm-9">
+                            <select class="js-example-basic-single js-states form-control" id="shop" multiple="multiple"></select>
+                        </div>
+                    </div>
+
+                    <!--优惠券规则-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="rule"> 优惠券规则 </label>
+                        <div class="col-sm-9">
+                            <div class="col-sm-3 form-group">
+                                <input type="email" class="form-control" id="rule"/>
+                            </div>
+                            <label class="control-label fl" style="padding-left:5px;padding-right: 5px"> 分减 </label>
+                            <div class="col-sm-3 form-group">
+                                <input type="email" class="form-control" />
+                            </div>
+                            <label class="control-label fl" style="padding-left:5px;padding-right: 5px"> 分 </label>
+                        </div>
+                    </div>
+
+                    <!--使用说明-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">使用说明</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="5"  id="description" ng-maxlength="200" ng-model="data.description"  ></textarea>
+                        </div>
+                    </div>
+
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">保存</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

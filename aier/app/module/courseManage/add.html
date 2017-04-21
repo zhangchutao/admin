@@ -1,0 +1,324 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">添加课程</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="courseForm" ng-submit="submitForm(validationForm)" novalidate>
+                    <!-- 课程名称 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="courseName"> 课程名称 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="formData.name" name="courseName" id="courseName" placeholder="请输入课程名称" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.courseName.$error" ng-if="courseForm.courseName.$touched">
+                                    <div ng-message="required">课程名称不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- 所属机构 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="intitution"> 所属机构 </label>
+                        <div class="col-sm-9">
+                            <input id="intitution" name="intitution" list="cars" class="form-control" ng-model="form.selectBox" placeholder="选择的机构" required/>
+                            <datalist id="cars" style="width: 100%">
+                                <option value="BMW">
+                                <option value="Ford">
+                                <option value="Volvo">
+                            </datalist>
+                            <!--<select class="form-control" name="category" ng-model="form.selectBox" id="category" required>-->
+                            <!--<option value="">&#45;&#45;请选择机构类别&#45;&#45;</option>-->
+                            <!--<option value="foo">Foo</option>-->
+                            <!--<option value="bar">Bar</option>-->
+                            <!--</select>-->
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.intitution.$error" ng-if="courseForm.intitution.$touched">
+                                    <div ng-message="required"><i class="icon-info"></i>机构不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!--课程简介-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="courseIntr"> 课程简介 </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="courseIntr" rows="5" ng-minlength="20" id="courseIntr" ng-maxlength="200" ng-model="form.message" placeholder="请输入课程简介" required></textarea>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.courseIntr.$error" ng-if="courseForm.courseIntr.$touched">
+                                    <div ng-message="required">课程简介不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--课程价格-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="coursePrice"> 课程价格(分) </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="formData.address" name="coursePrice" id="coursePrice" placeholder="请输入市场价格" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.coursePrice.$error" ng-if="courseForm.coursePrice.$touched">
+                                    <div ng-message="required">机构地址不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--市场价格-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="marketPrice"> 市场价格(分) </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="formData.longitude" name="marketPrice" id="marketPrice" placeholder="请输入市场价格" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.marketPrice.$error" ng-if="courseForm.marketPrice.$touched">
+                                    <div ng-message="required">经度不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--类型-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="type"> 类型 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="formData.latitude" name="type" id="type" placeholder="如标准课,试听课" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.type.$error" ng-if="courseForm.type.$touched">
+                                    <div ng-message="required">类型不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--时长(秒)-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="duration"> 时长(秒) </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="formData.studentNum" name="duration" id="duration" placeholder="60分钟=3600秒,45分钟=2700秒" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="courseForm.duration.$error" ng-if="courseForm.duration.$touched">
+                                    <div ng-message="required"> <a class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>时长不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--课时(节)-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lesson"> 课时(节) </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" ng-model="formData.contact" name="lesson" id="lesson" placeholder="例如 3" required phone/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="courseForm.lesson.$error" ng-if="courseForm.lesson.$touched">
+                                    <div ng-message="required">课时不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--试听课-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 试听课 </label>
+                        <div class="col-md-9">
+                            <div class="fl" >
+                                <label for="linkRadio" class="icheck-radio">
+                                    <input type="radio" id="yesRadio" name="trialLesson" value="link" ng-model="activityForm.content" ng-checked="true">
+                                    <div class="icheck-media"></div>
+                                    <div class="icheck-inner">
+                                        <div class="icheck-title">是</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="fl margin-left-20" >
+                                <label for="noteRadio" class="icheck-radio">
+                                    <input type="radio" id="noRadio" name="trialLesson" value="note" ng-model="activityForm.content" >
+                                    <div class="icheck-media"></div>
+                                    <div class="icheck-inner">
+                                        <div class="icheck-title">否</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--年龄段-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="age"> 年龄段 </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" ng-model="formData.contact" name="age" id="age" placeholder="例如 0-3" required phone/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="courseForm.age.$error" ng-if="courseForm.age.$touched">
+                                    <div ng-message="required">年龄段不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--师资力量-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">师资力量</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="5" ng-minlength="20" id="description" ng-maxlength="200" ng-model="form.message" placeholder="" required></textarea>
+                        </div>
+                    </div>
+                    <!--课程亮点-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="age" style="padding-top: 0px"> 课程亮点 <br>(多个亮点使用|分割) </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" ng-model="formData.contact" name="age" id="age" placeholder="例如 提高宝宝专注力|外教教学" required phone/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="courseForm.age.$error" ng-if="courseForm.age.$touched">
+                                    <div ng-message="required">年龄段不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--消费提示-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="tip">消费提示</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="tip" rows="5" ng-minlength="20" id="tip" ng-maxlength="200" ng-model="form.message" placeholder="" required></textarea>
+                        </div>
+                    </div>
+                    <!--图文详情-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 图文详情 </label>
+                        <div class="col-md-9">
+                            <div class="clearfix">
+                                <div class="fl" >
+                                    <label for="linkRadio" class="icheck-radio">
+                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">链接</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="fl margin-left-20" >
+                                    <label for="noteRadio" class="icheck-radio">
+                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="activityForm.content" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">富文本</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="fl margin-left-20" >
+                                    <label for="noteRadio" class="icheck-radio">
+                                        <input type="radio" id="photoRadio" name="content" value="note" ng-model="activityForm.photoRadio" >
+                                        <div class="icheck-media"></div>
+                                        <div class="icheck-inner">
+                                            <div class="icheck-title">图片(建议 720*1280)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!--连接-->
+                            <div style="margin-top: 20px">
+                                <input type="text" class="form-control" ng-model="formData.contact" name="link" id="link" placeholder="请输入活动内容链接" required phone/>
+                            </div>
+                            <!--富文本框-->
+                            <div style="margin-top: 20px">
+                                <div id="summernote">Hello Summernote</div>
+                            </div>
+                            <!--土坪-->
+                            <div style="margin-top: 20px">
+                                <img src="/assets/img/imgUpload/a11.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!--图片-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 图片 <br>(首张作为封面,640*480) </label>
+                        <div class="col-sm-9" >
+                            <div class="z_photo upimg-div clear" >
+                                <!--选择后展示的图片-->
+                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
+                                    <span class="up-span"></span>
+                                    <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                    <img  ngf-src="oneImage" alt="" class="up-img " ng-class="{'up-opcity': !loading}">
+                                    <p class="img-namep"></p>
+                                    <input  name="taglocation" value="" type="hidden">
+                                    <input  name="tags" value="" type="hidden">
+                                </section>
+
+                                <div ng-repeat="images in imgArray">
+                                    <section class="up-section fl " ng-repeat="oneImage in images">
+                                        <span class="up-span"></span>
+                                        <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                        <img  ngf-src="oneImage" alt="" class="up-img " >
+                                        <p class="img-namep"></p>
+                                        <input id="taglocation" name="taglocation" value="" type="hidden">
+                                        <input id="tag" name="tags" value="" type="hidden">
+                                    </section>
+                                </div>
+
+
+                                <section class="z_file fl">
+                                    <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
+                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="save()" >保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

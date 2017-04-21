@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="myapp">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title data-ng-bind="'艾尔成长 | ' + $state.current.data.pageTitle">艾尔成长</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />-->
+	<link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="assets/css/animate.min.css" rel="stylesheet" />
+	<link href="assets/css/style.min.css" rel="stylesheet" />
+	<link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<link href="assets/css/common.css" rel="stylesheet"  />
+	<link rel="stylesheet" href="assets/plugins/ionicons/css/ionicons.min.css">
+
+
+
+	<!-- ================== END BASE CSS STYLE ================== -->
+    
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+
+
+	<!-- ================== BEGIN BASE ANGULAR JS ================== -->
+    <script src="assets/plugins/angularjs/angular.min.js"></script>
+    <script src="assets/plugins/angularjs/angular-ui-route.min.js"></script>
+    <script src="assets/plugins/bootstrap-angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="assets/plugins/angularjs/ocLazyLoad.min.js"></script>
+	<!-- ================== END BASE ANGULAR JS ================== -->
+</head>
+<body ng-controller="appController"  ng-class="{'pace-top': setting.layout.paceTop, 'boxed-layout': setting.layout.pageBoxedLayout, 'bg-white': setting.layout.pageBgWhite }">
+    
+	<!-- begin #page-loader -->
+	<div id="page-loader" ng-controller="pageLoaderController" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="page-container page-sidebar-fixed page-header-fixed fade"
+	    ng-class="{
+	        'page-sidebar-minified': setting.layout.pageSidebarMinified,
+	        'page-content-full-height': setting.layout.pageContentFullHeight,
+	        'page-footer-fixed': setting.layout.pageFixedFooter,
+	        'page-with-right-sidebar': setting.layout.pageRightSidebar,
+	        'page-sidebar-minified': setting.layout.pageSidebarMinified,
+	        'page-with-two-sidebar': setting.layout.pageTwoSidebar,
+	        'page-right-sidebar-toggled': setting.layout.pageTwoSidebar,
+	        'page-with-top-menu': setting.layout.pageTopMenu,
+	        'page-without-sidebar': setting.layout.pageWithoutSidebar,
+	        'page-with-wide-sidebar': setting.layout.pageWideSidebar,
+	        'page-with-light-sidebar': setting.layout.pageLightSidebar,
+	        'p-t-0': setting.layout.pageWithoutHeader
+	    }">
+	    <div ui-view></div>
+	</div>
+	<!-- end page container -->
+	
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="assets/plugins/angularjs/angular-messages/angular-messages.js"></script>
+	<script src="assets/plugins/angularjs/angular-upload/ng-file-upload.min.js"></script>
+	<script src="assets/plugins/angularjs/angular-upload/ng-file-upload-shim.min.js"></script>
+	<script src="assets/js/angular-ngStorage.js"></script>
+
+	<!-- ================== END BASE JS ================== -->
+
+	<script src="env.js"></script>
+
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="app/components/config.js"></script>
+    <script src="app/components/routers.js"></script>
+	<script src="app/components/services/api.js"></script>
+
+	<!--控制器start-->
+	<script src="app/module/login/loginController.js"></script>
+	<script src="app/module/activityManage/activityController.js"></script>
+	<script src="app/module/courseManage/courseController.js"></script>
+	<script src="app/module/institutionManage/institutionController.js"></script>
+	<script src="app/module/newsManage/newsController.js"></script>
+	<script src="app/module/offerCodeManage/offerCodeController.js"></script>
+	<script src="app/module/brandManage/brandController.js"></script>
+	<script src="app/module/operationManage/operationController.js"></script>
+	<script src="app/module/orderManage/orderController.js"></script>
+	<script src="app/module/systemManage/systemController.js"></script>
+	<script src="app/module/userManage/userController.js"></script>
+	<script src="app/module/mian/mianController.js"></script>
+	<!--控制器end-->
+
+	<!--服务 start-->
+	<script src="app/module/login/loginService.js"></script>
+	<script src="app/module/institutionManage/institutionService.js"></script>
+	<!--服务 end-->
+
+	<!--其他start-->
+	<script src="app/components/directives/validation_directives.js"></script>
+	<script src="app/components/common/dataTable.js"></script>
+	<script src="app/module/institutionManage/city.js"></script>
+	<script src="assets/js/apps.min.js"></script>
+
+
+	<!--其他end-->
+
+
+
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+
+</body>
+</html>

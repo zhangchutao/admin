@@ -1,0 +1,151 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">添加品牌</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="brandForm"  >
+                    <!--品牌名称-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name"> 品牌名称 </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" id="name" ng-model="data.name" placeholder="请输入品牌名称" required />
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="brandForm.name.$error" ng-if="brandForm.name.$touched">
+                                    <div ng-message="required">品牌名称不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--所属类别 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category"> 所属类别 </label>
+                        <div class="col-sm-9">
+                            <select class="js-example-basic-single js-states form-control" id="category" multiple="multiple"></select>
+                        </div>
+                    </div>
+
+                    <!--年龄段-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category"> 年龄段 </label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" ng-model="formData.contact" name="price" id="price" placeholder="例如 3" required phone/>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="line-height-30 text-danger" ng-messages="activityForm.price.$error" ng-if="activityForm.price.$touched">
+                                    <div ng-message="required">价格不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--简介-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category"> 简介 </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="5"  id="description" ng-maxlength="200" ng-model="data.description"  ></textarea>
+                        </div>
+                    </div>
+
+                    <!--特色-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category"> 特色 </label>
+                        <div class="col-sm-9">
+                            <div id="summernote">Hello Summernote</div>
+                        </div>
+                    </div>
+
+
+                    <!--品牌封面图-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 品牌封面图 <br> (640*480)</label>
+                        <div class="col-sm-9" >
+                            <div class="z_photo upimg-div clear" >
+                                <!--选择后展示的图片-->
+                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
+                                    <span class="up-span"></span>
+                                    <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                    <img  ngf-src="oneImage" alt="" class="up-img " ng-class="{'up-opcity': !loading}">
+                                    <p class="img-namep"></p>
+                                    <input  name="taglocation" value="" type="hidden">
+                                    <input  name="tags" value="" type="hidden">
+                                </section>
+
+                                <div ng-repeat="images in imgArray">
+                                    <section class="up-section fl " ng-repeat="oneImage in images">
+                                        <span class="up-span"></span>
+                                        <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                        <img  ngf-src="oneImage" alt="" class="up-img " >
+                                        <p class="img-namep"></p>
+                                        <input id="taglocation" name="taglocation" value="" type="hidden">
+                                        <input id="tag" name="tags" value="" type="hidden">
+                                    </section>
+                                </div>
+
+
+                                <section class="z_file fl">
+                                    <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
+                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--品牌logo图-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" > 品牌logo图 <br> (320*160)</label>
+                        <div class="col-sm-9" >
+                            <div class="z_photo upimg-div clear" >
+                                <!--选择后展示的图片-->
+                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
+                                    <span class="up-span"></span>
+                                    <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                    <img  ngf-src="oneImage" alt="" class="up-img " ng-class="{'up-opcity': !loading}">
+                                    <p class="img-namep"></p>
+                                    <input  name="taglocation" value="" type="hidden">
+                                    <input  name="tags" value="" type="hidden">
+                                </section>
+
+                                <div ng-repeat="images in imgArray">
+                                    <section class="up-section fl " ng-repeat="oneImage in images">
+                                        <span class="up-span"></span>
+                                        <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
+                                        <img  ngf-src="oneImage" alt="" class="up-img " >
+                                        <p class="img-namep"></p>
+                                        <input id="taglocation" name="taglocation" value="" type="hidden">
+                                        <input id="tag" name="tags" value="" type="hidden">
+                                    </section>
+                                </div>
+
+
+                                <section class="z_file fl">
+                                    <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
+                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <!--按钮-->
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">保存</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

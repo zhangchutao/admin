@@ -1,0 +1,145 @@
+<!-- begin #sidebar -->
+<div id="sidebar" class="sidebar" ng-controller="sidebarController" ng-class="{ 'sidebar-transparent': setting.layout.pageSidebarTransparent }">
+    <!-- begin sidebar scrollbar -->
+    <div data-scrollbar="true" data-height="100%">
+        <!-- begin sidebar user 用户头像-->
+        <!--<ul class="nav">-->
+            <!--<li class="nav-profile">-->
+                <!--<div class="image">-->
+                    <!--<a href="javascript:;"><img src="assets/img/user-13.jpg" alt="" /></a>-->
+                <!--</div>-->
+                <!--<div class="info">-->
+                    <!--Sean Ngu-->
+                    <!--<small>Front end developer</small>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!-- end sidebar user -->
+        <!-- begin sidebar nav 菜单栏-->
+        <ul class="nav">
+            <!--机构管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.institution')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-laptop"></i>
+                    <span>机构管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.institution.list ">机构列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.institution.add">添加机构</a></li>
+                </ul>
+            </li>
+            <!--课程管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.course')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-inbox"></i> 
+                    <span>课程管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.course.list">课程列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.course.add">添加课程</a></li>
+                </ul>
+            </li>
+            <!--活动管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.activity')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-suitcase"></i>
+                    <span>活动管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.activity.list">活动列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.activity.add">添加活动</a></li>
+                </ul>
+            </li>
+            <!--品牌管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.brand')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-file-o"></i>
+                    <span>品牌管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.brand.list">品牌列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.brand.add">添加品牌</a></li>
+                </ul>
+            </li>
+            <!--优惠码管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.offerCode')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-th"></i>
+                    <span>优惠码管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.offerCode.list">优惠码列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.offerCode.add">添加优惠码</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.offerCode.release">发放优惠码</a></li>
+                </ul>
+            </li>
+            <!--运营推荐管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.operation')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-star"></i> 
+                    <span>运营推荐管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.operation.carousel">首页轮播</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.operation.recommendBrand">推荐品牌</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.operation.popularActivities">推荐热门活动</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.operation.popularCourse">发现热门课程</a></li>
+                </ul>
+            </li>
+            <!--消息管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.news')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-envelope"></i>
+                    <span>消息管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.news.list">消息列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.news.push">消息推送</a></li>
+                </ul>
+            </li>
+            <!--用户管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.user')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-area-chart"></i>
+                    <span>用户管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.user.userList">用户列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.user.reservationList">预约管理</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.user.feedbackList">用户反馈</a></li>
+                </ul>
+            </li>
+            <!--订单管理-->
+            <li ui-sref-active="active"><a ui-sref="app.order"><i class="fa fa-calendar"></i> <span>订单管理</span></a></li>
+            <!--系统管理-->
+            <li class="has-sub" ng-class="{active:$state.includes('app.system')}">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-area-chart"></i>
+                    <span>系统管理</span>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active"><a ui-sref="app.system.list">管理员列表</a></li>
+                    <li ui-sref-active="active"><a ui-sref="app.system.add">添加管理员</a></li>
+                </ul>
+            </li>
+
+            <!-- begin sidebar minify button 菜单栏的缩进按钮-->
+            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+            <!-- end sidebar minify button -->
+        </ul>
+        <!-- end sidebar nav -->
+    </div>
+    <!-- end sidebar scrollbar -->
+</div>
+<div class="sidebar-bg"></div>
+<!-- end #sidebar -->
+
