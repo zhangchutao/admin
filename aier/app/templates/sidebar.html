@@ -17,15 +17,18 @@
         <!-- end sidebar user -->
         <!-- begin sidebar nav 菜单栏-->
         <ul class="nav">
+            <!--自助对账-->
+            <li ui-sref-active="active"><a ui-sref="app.selfReconciliation"><i class="fa fa-tags"></i> <span>自助对账</span></a></li>
+
             <!--机构管理-->
             <li class="has-sub" ng-class="{active:$state.includes('app.institution')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-laptop"></i>
+                    <i class="fa fa-home"></i>
                     <span>机构管理</span>
                 </a>
                 <ul class="sub-menu">
-                    <li ui-sref-active="active"><a ui-sref="app.institution.list ">机构列表</a></li>
+                    <li ui-sref-active="active" ><a ui-sref="app.institution.list ">机构列表</a></li>
                     <li ui-sref-active="active"><a ui-sref="app.institution.add">添加机构</a></li>
                 </ul>
             </li>
@@ -33,7 +36,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.course')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-inbox"></i> 
+                    <i class="fa fa-mortar-board"></i>
                     <span>课程管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -45,7 +48,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.activity')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-suitcase"></i>
+                    <i class="fa fa-bullhorn"></i>
                     <span>活动管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -57,7 +60,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.brand')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-file-o"></i>
+                    <i class="fa fa-cubes"></i>
                     <span>品牌管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -69,7 +72,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.offerCode')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-th"></i>
+                    <i class="fa fa-gift"></i>
                     <span>优惠码管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -82,7 +85,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.operation')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-star"></i> 
+                    <i class="fa fa-laptop"></i>
                     <span>运营推荐管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -96,7 +99,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.news')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-envelope"></i>
+                    <i class="fa fa-comments"></i>
                     <span>消息管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -108,7 +111,7 @@
             <li class="has-sub" ng-class="{active:$state.includes('app.user')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-area-chart"></i>
+                    <i class="fa fa-users"></i>
                     <span>用户管理</span>
                 </a>
                 <ul class="sub-menu">
@@ -118,12 +121,12 @@
                 </ul>
             </li>
             <!--订单管理-->
-            <li ui-sref-active="active"><a ui-sref="app.order"><i class="fa fa-calendar"></i> <span>订单管理</span></a></li>
+            <li ui-sref-active="active"><a ui-sref="app.order"><i class="fa fa-shopping-cart"></i> <span>订单管理</span></a></li>
             <!--系统管理-->
             <li class="has-sub" ng-class="{active:$state.includes('app.system')}">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
-                    <i class="fa fa-area-chart"></i>
+                    <i class="fa fa-cogs"></i>
                     <span>系统管理</span>
                 </a>
                 <ul class="sub-menu">

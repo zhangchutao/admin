@@ -6,12 +6,12 @@
                 <h4 class="panel-title">添加课程</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" name="courseForm" ng-submit="submitForm(validationForm)" novalidate>
+                <form class="form-horizontal" name="courseForm" >
                     <!-- 课程名称 -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="courseName"> 课程名称 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.name" name="courseName" id="courseName" placeholder="请输入课程名称" required />
+                            <input type="text" class="form-control" ng-model="courseData.courseName" name="courseName" id="courseName" placeholder="请输入课程名称" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -24,42 +24,20 @@
                         </div>
 
                     </div>
-                    <!-- 所属机构 -->
+                     <!--所属机构-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="intitution"> 所属机构 </label>
+                        <label class="control-label col-sm-2" > 所属机构 </label>
                         <div class="col-sm-9">
-                            <input id="intitution" name="intitution" list="cars" class="form-control" ng-model="form.selectBox" placeholder="选择的机构" required/>
-                            <datalist id="cars" style="width: 100%">
-                                <option value="BMW">
-                                <option value="Ford">
-                                <option value="Volvo">
-                            </datalist>
-                            <!--<select class="form-control" name="category" ng-model="form.selectBox" id="category" required>-->
-                            <!--<option value="">&#45;&#45;请选择机构类别&#45;&#45;</option>-->
-                            <!--<option value="foo">Foo</option>-->
-                            <!--<option value="bar">Bar</option>-->
-                            <!--</select>-->
+                            <select class="form-control " id="institute"  style="width: 100%"></select>
                         </div>
-                        <div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-md-9">
-                                <div class="text-danger line-height-30" ng-messages="courseForm.intitution.$error" ng-if="courseForm.intitution.$touched">
-                                    <div ng-message="required"><i class="icon-info"></i>机构不能为空</div>
-                                    <div ng-messages-include="app/templates/formValidation.html"></div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
 
                     <!--课程简介-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="courseIntr"> 课程简介 </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="courseIntr" rows="5" ng-minlength="20" id="courseIntr" ng-maxlength="200" ng-model="form.message" placeholder="请输入课程简介" required></textarea>
+                            <textarea class="form-control" name="courseIntr" rows="5" id="courseIntr" ng-model="courseData.intr" placeholder="请输入课程简介" required></textarea>
                         </div>
-
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
@@ -69,20 +47,18 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <!--课程价格-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="coursePrice"> 课程价格(分) </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.address" name="coursePrice" id="coursePrice" placeholder="请输入市场价格" required />
+                            <input type="number" class="form-control" ng-model="courseData.price" name="coursePrice" id="coursePrice" placeholder="请输入市场价格" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
                                 <div class="text-danger line-height-30" ng-messages="courseForm.coursePrice.$error" ng-if="courseForm.coursePrice.$touched">
-                                    <div ng-message="required">机构地址不能为空</div>
+                                    <div ng-message="required">课程价格不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
                             </div>
@@ -92,13 +68,13 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="marketPrice"> 市场价格(分) </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.longitude" name="marketPrice" id="marketPrice" placeholder="请输入市场价格" required />
+                            <input type="text" class="form-control" ng-model="courseData.marketPrice" name="marketPrice" id="marketPrice" placeholder="请输入市场价格" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
                                 <div class="text-danger line-height-30" ng-messages="courseForm.marketPrice.$error" ng-if="courseForm.marketPrice.$touched">
-                                    <div ng-message="required">经度不能为空</div>
+                                    <div ng-message="required">市场价格不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
                             </div>
@@ -108,7 +84,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="type"> 类型 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.latitude" name="type" id="type" placeholder="如标准课,试听课" required />
+                            <input type="text" class="form-control" ng-model="courseData.type" name="type" id="type" placeholder="如标准课,试听课" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -124,13 +100,13 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="duration"> 时长(秒) </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.studentNum" name="duration" id="duration" placeholder="60分钟=3600秒,45分钟=2700秒" required />
+                            <input type="text" class="form-control" ng-model="courseData.courseDuration" name="duration" id="duration" placeholder="60分钟=3600秒,45分钟=2700秒" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
                                 <div class="text-danger line-height-30" ng-messages="courseForm.duration.$error" ng-if="courseForm.duration.$touched">
-                                    <div ng-message="required"> <a class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>时长不能为空</div>
+                                    <div ng-message="required"> 时长不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
                             </div>
@@ -140,7 +116,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="lesson"> 课时(节) </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" ng-model="formData.contact" name="lesson" id="lesson" placeholder="例如 3" required phone/>
+                            <input type="number" class="form-control" ng-model="courseData.lesson" name="lesson" id="lesson" placeholder="例如 3" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -158,8 +134,8 @@
                         <label class="control-label col-sm-2" > 试听课 </label>
                         <div class="col-md-9">
                             <div class="fl" >
-                                <label for="linkRadio" class="icheck-radio">
-                                    <input type="radio" id="yesRadio" name="trialLesson" value="link" ng-model="activityForm.content" ng-checked="true">
+                                <label for="yesRadio" class="icheck-radio">
+                                    <input type="radio" id="yesRadio" name="trialLesson" value="yes" ng-model="courseData.isTrial" ng-checked="true">
                                     <div class="icheck-media"></div>
                                     <div class="icheck-inner">
                                         <div class="icheck-title">是</div>
@@ -167,8 +143,8 @@
                                 </label>
                             </div>
                             <div class="fl margin-left-20" >
-                                <label for="noteRadio" class="icheck-radio">
-                                    <input type="radio" id="noRadio" name="trialLesson" value="note" ng-model="activityForm.content" >
+                                <label for="noRadio" class="icheck-radio">
+                                    <input type="radio" id="noRadio" name="trialLesson" value="no" ng-model="courseData.isTrial" >
                                     <div class="icheck-media"></div>
                                     <div class="icheck-inner">
                                         <div class="icheck-title">否</div>
@@ -183,7 +159,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="age"> 年龄段 </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" ng-model="formData.contact" name="age" id="age" placeholder="例如 0-3" required phone/>
+                            <input type="text" class="form-control" ng-model="courseData.age" name="age" id="age" placeholder="例如 0-3" required/>
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -194,26 +170,25 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <!--师资力量-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="description">师资力量</label>
+                        <label class="control-label col-sm-2" for="teacher">师资力量</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="description" rows="5" ng-minlength="20" id="description" ng-maxlength="200" ng-model="form.message" placeholder="" required></textarea>
+                            <textarea class="form-control" name="description" rows="5"  id="teacher"  ng-model="courseData.teacher" ></textarea>
                         </div>
                     </div>
                     <!--课程亮点-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="age" style="padding-top: 0px"> 课程亮点 <br>(多个亮点使用|分割) </label>
+                        <label class="control-label col-sm-2" for="courseFeature" style="padding-top: 0px"> 课程亮点 <br>(多个亮点使用|分割) </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" ng-model="formData.contact" name="age" id="age" placeholder="例如 提高宝宝专注力|外教教学" required phone/>
+                            <input type="text" class="form-control" ng-model="courseData.courseFeature" name="courseFeature" id="courseFeature" placeholder="例如 提高宝宝专注力|外教教学" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
-                                <div class="line-height-30 text-danger" ng-messages="courseForm.age.$error" ng-if="courseForm.age.$touched">
-                                    <div ng-message="required">年龄段不能为空</div>
+                                <div class="line-height-30 text-danger" ng-messages="courseForm.courseFeature.$error" ng-if="courseForm.courseFeature.$touched">
+                                    <div ng-message="required">课程亮点不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
                             </div>
@@ -222,19 +197,19 @@
                     </div>
                     <!--消费提示-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="tip">消费提示</label>
+                        <label class="control-label col-sm-2" for="tags">消费提示</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="tip" rows="5" ng-minlength="20" id="tip" ng-maxlength="200" ng-model="form.message" placeholder="" required></textarea>
+                            <textarea class="form-control" name="tags" rows="5"  id="tags" ng-model="courseData.tags" ></textarea>
                         </div>
                     </div>
                     <!--图文详情-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 图文详情 </label>
                         <div class="col-md-9">
-                            <div class="clearfix">
+                            <div class="clear">
                                 <div class="fl" >
                                     <label for="linkRadio" class="icheck-radio">
-                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="courseData.detail" ng-checked="true">
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">链接</div>
@@ -243,7 +218,7 @@
                                 </div>
                                 <div class="fl margin-left-20" >
                                     <label for="noteRadio" class="icheck-radio">
-                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="courseData.detail" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">富文本</div>
@@ -251,8 +226,8 @@
                                     </label>
                                 </div>
                                 <div class="fl margin-left-20" >
-                                    <label for="noteRadio" class="icheck-radio">
-                                        <input type="radio" id="photoRadio" name="content" value="note" ng-model="activityForm.photoRadio" >
+                                    <label for="photoRadio" class="icheck-radio">
+                                        <input type="radio" id="photoRadio" name="content" value="photo" ng-model="courseData.detail" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">图片(建议 720*1280)</div>
@@ -262,16 +237,38 @@
                             </div>
 
                             <!--连接-->
-                            <div style="margin-top: 20px">
-                                <input type="text" class="form-control" ng-model="formData.contact" name="link" id="link" placeholder="请输入活动内容链接" required phone/>
+                            <div ng-if="courseData.detail=='link'" style="margin-top: 20px">
+                                <input type="text" class="form-control" ng-model="courseData.detail_link" name="link" id="link" placeholder="请输入活动内容链接" required />
+                                <div class="text-danger line-height-30" ng-messages="courseForm.link.$error" ng-if="courseForm.link.$touched">
+                                    <div ng-message="required">活动链接不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
                             </div>
                             <!--富文本框-->
-                            <div style="margin-top: 20px">
-                                <div id="summernote">Hello Summernote</div>
+                            <div ng-show="courseData.detail=='note'" style="margin-top: 20px">
+                                <div id="summernote"></div>
                             </div>
-                            <!--土坪-->
-                            <div style="margin-top: 20px">
-                                <img src="/assets/img/imgUpload/a11.png" alt="">
+                            <!--图片-->
+                            <div ng-if="courseData.detail=='photo'" class="clearfix" style="margin-top: 20px ; position: relative">
+                                <div class="z_photo upimg-div clearfix"  ng-class="{'border-dashed':detail_showBorder}">
+                                    <!--选择后展示的图片-->
+                                    <div ng-repeat="images in detail_imgArray" ng-init="outIndex = $index">
+                                        <section class="up-section fl " ng-repeat="oneImage in images" ng-class="{'loading': outIndex+1 == detail_imgArray.length}">
+                                            <i class="ion-ios-close fa-2x text-success close-upimg"></i>
+                                            <!--这里设置成点击可以再次上次图片,如果不要这个功能,那么可以去掉外面这一层div-->
+                                            <div class="fl" type="file" ngf-select="evenListener.uploadImg($files , true)" ngf-pattern="'image/*'">
+                                                <img  ngf-src="oneImage" alt="" class="up-img " >
+                                            </div>
+
+                                        </section>
+                                    </div>
+
+                                    <!--上传图片-->
+                                    <section class="z_file fl">
+                                        <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
+                                        <input type="file" name="file"  class="file" ngf-select="evenListener.uploadImg($files , true)" ngf-pattern="'image/*'"/>
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -279,32 +276,55 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 图片 <br>(首张作为封面,640*480) </label>
                         <div class="col-sm-9" >
-                            <div class="z_photo upimg-div clear" >
-                                <!--选择后展示的图片-->
-                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
-                                    <span class="up-span"></span>
-                                    <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
-                                    <img  ngf-src="oneImage" alt="" class="up-img " ng-class="{'up-opcity': !loading}">
-                                    <p class="img-namep"></p>
-                                    <input  name="taglocation" value="" type="hidden">
-                                    <input  name="tags" value="" type="hidden">
-                                </section>
+                            <!--<div class=" upimg-div clear"  ng-class="{'z_photo':showBorder}">-->
+                                <!--&lt;!&ndash;选择后展示的图片&ndash;&gt;-->
+                                <!--<div ng-repeat="images in imgArray">-->
+                                    <!--<section class="up-section fl " ng-repeat="oneImage in images">-->
+                                        <!--&lt;!&ndash;hover的黑色透明浮层&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<span class="up-span"></span>&ndash;&gt;-->
+                                        <!--<i class="ion-ios-close fa-2x text-success close-upimg"></i>-->
+                                        <!--&lt;!&ndash;这里设置成点击可以再次上次图片,如果不要这个功能,那么可以去掉外面这一层div&ndash;&gt;-->
+                                        <!--<div class="fl" type="file" ngf-select="evenListener.uploadImg($files , false)" ngf-pattern="'image/*'">-->
+                                            <!--<img  ngf-src="oneImage" alt="" class="up-img " >-->
+                                        <!--</div>-->
+                                    <!--</section>-->
+                                <!--</div>-->
 
-                                <div ng-repeat="images in imgArray">
-                                    <section class="up-section fl " ng-repeat="oneImage in images">
-                                        <span class="up-span"></span>
-                                        <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
-                                        <img  ngf-src="oneImage" alt="" class="up-img " >
-                                        <p class="img-namep"></p>
-                                        <input id="taglocation" name="taglocation" value="" type="hidden">
-                                        <input id="tag" name="tags" value="" type="hidden">
+                                <!--&lt;!&ndash;当前选中的图片&ndash;&gt;-->
+                                <!--<section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">-->
+                                    <!--&lt;!&ndash;删除按钮&ndash;&gt;-->
+                                    <!--<i class="ion-ios-close fa-2x text-success close-upimg"></i>-->
+                                    <!--<div class="fl" type="file" ngf-select="evenListener.uploadImg($files , false)" ngf-pattern="'image/*'">-->
+                                        <!--<img  ngf-src="oneImage" alt="" class="up-img " >-->
+                                    <!--</div>-->
+
+                                <!--</section>-->
+
+
+                                <!--&lt;!&ndash;上传图片&ndash;&gt;-->
+                                <!--<section class="z_file fl">-->
+                                    <!--<img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >-->
+                                    <!--<input type="file" name="file"  class="file" ngf-select="evenListener.uploadImg($files , false)" ngf-pattern="'image/*'"/>-->
+                                <!--</section>-->
+                            <!--</div>-->
+
+                            <div class="z_photo upimg-div clearfix"  ng-class="{'border-dashed':showBorder}">
+                                <!--选择后展示的图片-->
+                                <div ng-repeat="images in imgArray" ng-init="outIndex = $index">
+                                    <section class="up-section fl " ng-repeat="oneImage in images" ng-class="{'loading': outIndex+1 == imgArray.length}">
+                                        <i class="ion-ios-close fa-2x text-success close-upimg"></i>
+                                        <!--这里设置成点击可以再次上次图片,如果不要这个功能,那么可以去掉外面这一层div-->
+                                        <div class="fl" type="file" ngf-select="evenListener.uploadImg($files , false)" ngf-pattern="'image/*'">
+                                            <img  ngf-src="oneImage" alt="" class="up-img " >
+                                        </div>
+
                                     </section>
                                 </div>
 
-
+                                <!--上传图片-->
                                 <section class="z_file fl">
                                     <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
-                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                    <input type="file" name="file"  class="file" ngf-select="evenListener.uploadImg($files , false)" ngf-pattern="'image/*'"/>
                                 </section>
                             </div>
                         </div>
@@ -314,7 +334,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="save()" >保存</button>
+                            <button type="submit" class="btn btn-success width-xs fr" ng-disabled="courseForm.$invalid"  ng-click="evenListener.save()" >保存</button>
                         </div>
                     </div>
                 </form>

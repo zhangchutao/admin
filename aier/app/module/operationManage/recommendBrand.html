@@ -6,7 +6,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <button type="file" ngf-select="uploadImg($file)" class="btn btn-xs btn-icon btn-circle btn-success">+
+                        <button type="file" ngf-select="everListener.addPopularCourse($files)" class="btn btn-xs btn-icon btn-circle btn-success">+
                         </button>
                     </div>
                     <h4 class="panel-title">首页推荐品牌</h4>
@@ -15,31 +15,35 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th class="text-align-center">排序</th>
-                            <th class="text-align-center">图片(720*290)</th>
-                            <th class="text-align-center">选择品牌</th>
-                            <th class="text-align-center">操作</th>
+                            <th class="text-align-center" width="15%">排序</th>
+                            <th class="text-align-center" style="width:35%; min-width: 200px">图片(720*290)</th>
+                            <th class="text-align-center" width="35%">选择品牌</th>
+                            <th class="text-align-center" width="15%">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            <td class="text-align-center"><input class="" style="width: 20px;" type="text" ></td>
-                            <td class="text-align-center"><img width="200" ng-src="https://files.ier100.com/b/index_ads_imgs/d34e6e710cbb6d2121bb888ffb7b7f00.jpeg" src="https://files.ier100.com/b/index_ads_imgs/d34e6e710cbb6d2121bb888ffb7b7f00.jpeg"></td>
+                        <!--原本条目-->
+                        <tr ng-repeat="items in recommendBrand">
+                            <td class="text-align-center"><input class="" style="width: 30px;" type="number" ng-model="items.sort" min="0"></td>
+                            <td class="text-align-center"><img width="200" src="{{items.img}}"></td>
+                            <td class="text-align-center" ng-bind="items.brand"></td>
+                            <td class="text-align-center"><a href="" ng-click="everListener.delBrand(items,true)">删除</a></td>
+                        </tr>
+                        <!--&lt;!&ndash;新添加的条目&ndash;&gt;-->
+                        <tr ng-show="shoeAdd" ng-repeat="items in addRecommendBrandArr" on-finish-render-filters>
+                            <td class="text-align-center"><input class="" style="width: 20px;" type="number" ng-model="items.sort"></td>
+                            <td class="text-align-center" ng-repeat="oneImage in items.img"><img width="200" ngf-src="oneImage"></td>
                             <td class="text-align-center">
-                                <select class="form-control" name="brand"  id="brand" ng-model="data.brand">
-                                    <option value="">--请选择机构类别--</option>
-                                    <option value="foo">Foo</option>
-                                    <option value="bar">Bar</option>
-                                </select>
+                                <select class="form-control " id="recommendBrand{{$index}}" style="width: 80%"></select>
                             </td>
-                            <td style="text-align: center"><a href="" ng-click="del(ad)">删除</a></td>
+                            <td class="text-align-center"><a href="" ng-click="everListener.delBrand(items,fasle)">删除</a></td>
                         </tr>
                         </tbody>
                     </table>
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-12" style="text-align: center">
-                            <button type="submit" class="btn btn-success width-xs "  ng-click="a()">保存</button>
+                            <button type="submit" class="btn btn-success width-xs "  ng-click="everListener.save()">保存</button>
                         </div>
                     </div>
                 </div>

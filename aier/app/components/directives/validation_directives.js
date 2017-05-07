@@ -331,11 +331,20 @@ myApp.directive('onFinishRenderFilters', function ($timeout) {
         restrict: 'A',
         link: function(scope, element, attr) {
             if (scope.$last === true) {
-                scope.$emit('ngRepeatFinished');
                 $timeout(function() {
-
-                },100);
+                    scope.$emit('ngRepeatFinished');
+                });
             }
         }
     };
+});
+
+//默认图片
+myApp.filter('upload', function ($rootScope) {
+    return function (input) {
+        if (input != null && input != "" && $rootScope.upload_domain != null) {
+            return $rootScope.upload_domain + input;
+        }
+        return "backend/img/user-12.jpg";
+    }
 });

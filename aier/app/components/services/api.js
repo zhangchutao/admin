@@ -62,21 +62,18 @@ myApp.service('api', function ($http, $q, $localStorage, Upload, $state) {
          * @param path 服务器存储位置
          * @returns Obj{*} 可调用.success().error()
          */
-        this.upload = function (file, path) {
+        this.upload = function (file) {
+            console.log(file)
             var params = {
                 device_id: $localStorage.uuid,
-                client_type: getEnv().module.toLowerCase(),
+                client_type: 'web',
                 version: getEnv().version,
-                os_info: 'browser',
-                model: 'computer',
-                network: 'wifi',
-                channel: 'offical',
-                data: JSON.stringify({path: path})
+                // data: JSON.stringify({path: path})
             };
             if (file && !file.$error) {
                 params = {
                     url: getEnv().server + "/" + getEnv().module + '/upload',
-                    file: file,
+                    data: file,
                     fields: params,
                     sendFieldsAs: 'json-blob',
                     method: 'POST'

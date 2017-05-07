@@ -15,9 +15,10 @@ myApp.factory('institutionList' , function () {
     ];
 
     var institutionSelect = [
-        {id:'1' , institution:'科瑞机器人'},
-        {id:'2' , institution:'小马快跑'},
-        {id:'3' , institution:'多多熊'},
+        {id:'0' , text:'全部' , vaule:''},
+        {id:'1' , text:'科瑞机器人' , vaule:'科瑞机器人'},
+        {id:'2' , text:'小马快跑' , vaule:'小马快跑'},
+        {id:'3' , text:'多多熊' , vaule:'多多熊'},
     ]
     return{
         //    获取表格列表数据
@@ -33,11 +34,11 @@ myApp.factory('institutionList' , function () {
 })
 
 
-myApp.factory('institutionData' , function () {
+myApp.factory('institutionData' , ['$timeout', function ($timeout) {
     var getBrand = [
         {id:'1' , text:'科瑞机器人'},
-        {id:'1' , text:'小马快跑'},
-        {id:'1' , text:'多多熊'},
+        {id:'2' , text:'小马快跑'},
+        {id:'3' , text:'多多熊'},
     ];
     var getBusiness =[
         {
@@ -351,4 +352,4 @@ myApp.factory('institutionData' , function () {
         }
 
     }
-})
+}])

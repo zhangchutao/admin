@@ -6,7 +6,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <button type="file" ngf-select="uploadImg($file)" class="btn btn-xs btn-icon btn-circle btn-success">+
+                        <button type="file" ng-click="everListener.addPopularActivity()" class="btn btn-xs btn-icon btn-circle btn-success">+
                         </button>
                     </div>
                     <h4 class="panel-title">首页推荐热门活动</h4>
@@ -21,13 +21,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            <td class="text-align-center"><input class="" style="width: 30px;" type="text" ></td>
-                            <td class="text-align-center"><input class=""  type="text" ></td>
-                            <td style="text-align: center">
+                        <!--原本数据-->
+                        <tr ng-repeat="items in popularActivity">
+                            <td class="text-align-center" width="25%"><input class="" style="width: 30px;" type="number" ng-model="items.sort" min="0"></td>
+                            <td class="text-align-center" ng-bind="items.activityId" width="35%"></td>
+                            <td class="text-align-center" width="40%">
                                 <a href="" >编辑活动</a> |
                                 <a href="" >连接</a> |
-                                <a href="" >删除</a> |
+                                <a ng-click="everListener.delActivity(items , true)" >删除</a> |
+                                <a href="" >图片</a>
+                            </td>
+                        </tr>
+                        <!--新添加条目-->
+                        <tr ng-show="shoeAdd"  ng-repeat="items in addPopularActivityArr" on-finish-render-filters>
+                            <td class="text-align-center"><input class="" style="width: 30px;" type="number" ng-model="items.sort"></td>
+                            <td class="text-align-center"><input class="text-align-center"  type="number" ng-model="items.activityId"></td>
+                            <td class="text-align-center">
+                                <a href="" >编辑活动</a> |
+                                <a href="" >连接</a> |
+                                <a ng-click="everListener.delActivity(items , false)" >删除</a> |
                                 <a href="" >图片</a>
                             </td>
                         </tr>
@@ -36,7 +48,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-12" style="text-align: center">
-                            <button type="submit" class="btn btn-success width-xs "  ng-click="a()">保存</button>
+                            <button type="submit" class="btn btn-success width-xs "  ng-click="everListener.save()">保存</button>
                         </div>
                     </div>
                 </div>

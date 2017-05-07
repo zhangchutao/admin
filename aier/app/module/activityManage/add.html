@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="activityName"> 活动名称 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.name" name="activityName" id="activityName" placeholder="请输入活动名称" required />
+                            <input type="text" class="form-control" ng-model="activityData.name" name="activityName" id="activityName" placeholder="请输入活动名称" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -28,18 +28,19 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="intitution"> 所属机构 </label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="intitution" ng-model="form.selectBox" id="intitution" required>
-                            <option value="">--请选择机构类别--</option>
-                            <option value="foo">小马快跑</option>
-                            <option value="bar">多多熊</option>
-                            </select>
+                            <select class="form-control " id="intitution"  style="width: 100%"></select>
+                            <!--<select class="form-control" name="intitution" ng-model="form.selectBox" id="intitution" required>-->
+                            <!--<option value="">&#45;&#45;请选择机构类别&#45;&#45;</option>-->
+                            <!--<option value="foo">小马快跑</option>-->
+                            <!--<option value="bar">多多熊</option>-->
+                            <!--</select>-->
                         </div>
                     </div>
                     <!--活动简介-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="activityIntr"> 活动简介 </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="activityIntr" rows="5" ng-minlength="20" id="activityIntr" ng-maxlength="200" ng-model="form.message" placeholder="" required></textarea>
+                            <textarea class="form-control" name="activityIntr" rows="5"  id="activityIntr"  ng-model="activityData.intr" placeholder="" required></textarea>
                         </div>
 
                         <div>
@@ -54,14 +55,14 @@
                     </div>
                     <!--特色-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="activityFeat"> 活动特色 </label>
+                        <label class="control-label col-sm-2" for="activityFeature"> 活动特色 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.address" name="activityFeat" id="activityFeat" placeholder="请输入活动特色" required />
+                            <input type="text" class="form-control" ng-model="activityData.feature" name="activityFeature" id="activityFeature" placeholder="请输入活动特色" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
-                                <div class="text-danger line-height-30" ng-messages="activityForm.activityFeat.$error" ng-if="activityForm.activityFeat.$touched">
+                                <div class="text-danger line-height-30" ng-messages="activityForm.activityFeature.$error" ng-if="activityForm.activityFeature.$touched">
                                     <div ng-message="required">活动特色不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
@@ -72,54 +73,55 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="activityType"> 活动类别 </label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="activityType" ng-model="form.selectBox" id="activityType" required>
-                                <option value="">--请选择活动类别--</option>
-                                <option value="foo">可购买</option>
-                                <option value="bar">免费报名</option>
-                                <option value="bar">文章</option>
-                            </select>
+                            <select class="form-control " id="activityType"  style="width: 100%"></select>
+                            <!--<select class="form-control" name="activityType" ng-model="form.selectBox" id="activityType" required>-->
+                                <!--<option value="">&#45;&#45;请选择活动类别&#45;&#45;</option>-->
+                                <!--<option value="foo">可购买</option>-->
+                                <!--<option value="bar">免费报名</option>-->
+                                <!--<option value="bar">文章</option>-->
+                            <!--</select>-->
                         </div>
-                        <div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-md-9">
-                                <div class="text-danger line-height-30" ng-messages="activityForm.activityType.$error" ng-if="activityForm.activityType.$touched">
-                                    <div ng-message="required">活动类别不能为空</div>
-                                    <div ng-messages-include="app/templates/formValidation.html"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div>-->
+                            <!--<div class="col-sm-2"></div>-->
+                            <!--<div class="col-md-9">-->
+                                <!--<div class="text-danger line-height-30" ng-messages="activityForm.activityType.$error" ng-if="activityForm.activityType.$touched">-->
+                                    <!--<div ng-message="required">活动类别不能为空</div>-->
+                                    <!--<div ng-messages-include="app/templates/formValidation.html"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                     <!--想参加人数-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="joiningNum"> 想参加人数 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" ng-model="formData.latitude" name="joiningNum" id="joiningNum" placeholder="按当前日期与创建日期的天数差,每天增加30%" required />
+                            <input type="number" class="form-control" ng-model="activityData.joinNum" name="joiningNum" id="joiningNum" placeholder="按当前日期与创建日期的天数差,每天增加30%" required />
                         </div>
-                        <!--<div>-->
-                            <!--<div class="col-sm-2"></div>-->
-                            <!--<div class="col-md-9">-->
-                                <!--<div class="text-danger line-height-30" ng-messages="activityForm.joiningNum.$error" ng-if="activityForm.joiningNum.$touched">-->
-                                    <!--<div ng-message="required">想参加人数不能为空</div>-->
-                                    <!--<div ng-messages-include="app/templates/formValidation.html"></div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-9">
+                                <div class="text-danger line-height-30" ng-messages="activityForm.joiningNum.$error" ng-if="activityForm.joiningNum.$touched">
+                                    <div ng-message="required">想参加人数不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--起止时间-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 起止时间 </label>
                         <div class="col-sm-9">
                             <div class="input-group input-daterange">
-                                <input type="text" class="form-control" name="start" placeholder="Date Start" />
-                                <span class="input-group-addon">to</span>
-                                <input type="text" class="form-control" name="end" placeholder="Date End" />
+                                <input type="text" class="form-control" name="start" id="startTime" placeholder="开始时间" value="2017-4-26" required/>
+                                <span class="input-group-addon"> ~ </span>
+                                <input type="text" class="form-control" name="end" id="entTime" placeholder="结束时间" required/>
                             </div>
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
                             <div class="col-md-9">
-                                <div class="text-danger line-height-30" ng-messages="courseForm.duration.$error" ng-if="courseForm.duration.$touched">
-                                    <div ng-message="required"> <a class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>时长不能为空</div>
+                                <div class="text-danger line-height-30" ng-messages="activityForm.startTime.$error" ng-if="activityForm.startTime.$touched">
+                                    <div ng-message="required"> 起止时间不能为空</div>
                                     <div ng-messages-include="app/templates/formValidation.html"></div>
                                 </div>
                             </div>
@@ -129,7 +131,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="price"> 价格(分) </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" ng-model="formData.contact" name="price" id="price" placeholder="例如 3" required phone/>
+                            <input type="number" class="form-control" ng-model="activityData.price" name="price" id="price" placeholder="例如 3" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -149,7 +151,7 @@
                             <div class="clearfix">
                                 <div class="fl" >
                                     <label for="linkRadio" class="icheck-radio">
-                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="activityData.content" ng-checked="true">
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">链接</div>
@@ -158,7 +160,7 @@
                                 </div>
                                 <div class="fl margin-left-20" >
                                     <label for="noteRadio" class="icheck-radio">
-                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="activityData.content" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">富文本</div>
@@ -169,12 +171,16 @@
                             </div>
 
                             <!--连接-->
-                            <div style="margin-top: 20px">
-                                <input type="text" class="form-control" ng-model="formData.contact" name="link" id="link" placeholder="请输入活动内容链接" required phone/>
+                            <div ng-if="activityData.content =='link'" style="margin-top: 20px">
+                                <input type="text" class="form-control" ng-model="activityData.contact_link" name="link" id="link" placeholder="请输入活动内容链接" required />
+                                <div class="text-danger line-height-30" ng-messages="activityForm.link.$error" ng-if="activityForm.link.$touched">
+                                    <div ng-message="required">活动链接不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
                             </div>
                             <!--富文本框-->
-                            <div style="margin-top: 20px">
-                                <div id="summernote">Hello Summernote</div>
+                            <div ng-show="activityData.content =='note'" style="margin-top: 20px">
+                                <div id="summernote"></div>
                             </div>
                         </div>
 
@@ -186,32 +192,21 @@
                             (340*230)
                         </label>
                         <div class="col-sm-9" >
-                            <div class="z_photo upimg-div clear" >
-                                <!--选择后展示的图片-->
+                            <div class="z_photo upimg-div clear"  >
+                                <!--当前选中的图片-->
                                 <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
-                                    <span class="up-span"></span>
-                                    <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
-                                    <img  ngf-src="oneImage" alt="" class="up-img " ng-class="{'up-opcity': !loading}">
-                                    <p class="img-namep"></p>
-                                    <input  name="taglocation" value="" type="hidden">
-                                    <input  name="tags" value="" type="hidden">
+                                    <i class="ion-ios-close fa-2x text-success close-upimg" ng-click="evenListener.deldescimg()"></i>
+                                    <div class="fl" type="file" ngf-select="evenListener.uploadImg($files )" ngf-pattern="'image/*'">
+                                        <img  ngf-src="oneImage" alt="" class="up-img " >
+                                    </div>
+
                                 </section>
 
-                                <div ng-repeat="images in imgArray">
-                                    <section class="up-section fl " ng-repeat="oneImage in images">
-                                        <span class="up-span"></span>
-                                        <img src="/assets/img/imgUpload/a7.png" class="close-upimg">
-                                        <img  ngf-src="oneImage" alt="" class="up-img " >
-                                        <p class="img-namep"></p>
-                                        <input id="taglocation" name="taglocation" value="" type="hidden">
-                                        <input id="tag" name="tags" value="" type="hidden">
-                                    </section>
-                                </div>
 
-
-                                <section class="z_file fl">
+                                <!--上传图片-->
+                                <section class="z_file fl" ng-show="showAddImgs">
                                     <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
-                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                    <input type="file" name="file"  class="file" ngf-select="evenListener.uploadImg($files )" ngf-pattern="'image/*'"/>
                                 </section>
                             </div>
                         </div>
@@ -221,7 +216,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="button" class="btn btn-success width-xs " style="float:right" ng-click="save()" >保存</button>
+                            <button type="button" class="btn btn-success width-xs fr" ng-click="evenListener.save()" >保存</button>
                         </div>
                     </div>
                 </form>

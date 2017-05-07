@@ -10,7 +10,6 @@ var myApp = angular.module('myapp', [
     'ngMessages',
     'ngFileUpload',
     'myapp'
-    // 'ng.ueditor'
 ]).config(
     [
         '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',

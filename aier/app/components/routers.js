@@ -29,7 +29,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                     return $ocLazyLoad.load({
                         serie: true,
                         files: [
-                            'assets/js/md5.js',
+                            'app/module/mian/mianService.js',
+                            'app/module/mian/mianController.js',
                         ]
                     });
                 }]
@@ -43,25 +44,22 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             parent:'root',
             templateUrl: 'app/templates/app.html',
             abstract: true,
-            // controller:'AppController',
-        })
-
-        //机构管理
-        .state('app.institution', {
-            url: '/institution',
-            template: '<div ui-view></div>',
-            abstract: true
-        })
-        .state('app.institution.list', {
-            url: '/list',
-            templateUrl: 'app/module/institutionManage/list.html',
-            data: { pageTitle: '机构列表' },
-            controller:'InstitutionListController',
             resolve: {
                 service: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({
+                        //gritter:是警告框
                         serie: true,
                         files: [
+                            'app/components/directives/validation_directives.js',
+                            'app/components/common/dataTable.js',
+                            'app/components/common/help.js',
+
+                            'assets/plugins/gritter/css/jquery.gritter.css',
+                            'assets/plugins/gritter/js/jquery.gritter.js',
+
+                            'assets/plugins/select2/dist/css/select2.min.css',
+                            'assets/plugins/select2/dist/js/select2.min.js',
+
                             'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
                             'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
                             'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
@@ -69,31 +67,60 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                             'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
                             'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
                             'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.css',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.js',
                         ]
                     });
                 }]
             }
+
+        })
+
+        //自助对账 机构后台
+        .state('app.selfReconciliation', {
+            url: '/self',
+            data: { pageTitle: '自助对账' },
+            templateUrl: 'app/module/selfRecociliation/list.html',
+            controller:'SelfListController',
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/selfRecociliation/selfService.js',
+                            'app/module/selfRecociliation/selfController.js',
+                        ]
+                    });
+                }]
+            }
+        })
+
+        //机构管理
+        .state('app.institution', {
+            url: '/institution',
+            template: '<div ui-view></div>',
+            abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/institutionManage/institutionService.js',
+                            'app/module/institutionManage/institutionController.js',
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('app.institution.list', {
+            url: '/list',
+            templateUrl: 'app/module/institutionManage/list.html',
+            data: { pageTitle: '机构列表' },
+            controller:'InstitutionListController',
         })
         .state('app.institution.add', {
             url: '/add',
             templateUrl: 'app/module/institutionManage/edit.html',
             data: { pageTitle: '添加机构' },
             controller:'AddInstitutionController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/jquery-tag-it/css/jquery.tagit.css',
-                            'assets/plugins/jquery-tag-it/js/tag-it.min.js',
-                            'assets/plugins/select2/dist/css/select2.min.css',
-                            'assets/plugins/select2/dist/js/select2.min.js',
-                        ]
-                    });
-                }]
-            }
         })
         .state('app.institution.edit', {
             url: '/edit?id',
@@ -106,43 +133,61 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         .state('app.course', {
             url: '/course',
             template: '<div ui-view></div>',
-            abstract: true
+            abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/courseManage/courseService.js',
+                            'app/module/courseManage/courseController.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.course.list', {
             url: '/list',
             data: { pageTitle: '课程列表' },
             templateUrl: 'app/module/courseManage/list.html',
             controller:'CourseListController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.css',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.js',
-                        ]
-                    });
-                }]
-            }
         })
         .state('app.course.add', {
             url: '/add',
             data: { pageTitle: '添加课程' },
             templateUrl: 'app/module/courseManage/add.html',
             controller:'AddCourseController',
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'assets/plugins/summernote/summernote.css',
+                            'assets/plugins/summernote/summernote.min.js',
+                            'assets/plugins/summernote/lang/summernote-zh-CN.min.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.course.edit', {
-            url: '/edit',
+            url: '/edit?id',
             data: { pageTitle: '课程编辑' },
             templateUrl: 'app/module/courseManage/add.html',
             controller:'EditCourseController',
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'assets/plugins/summernote/summernote.css',
+                            'assets/plugins/summernote/summernote.min.js',
+                            'assets/plugins/summernote/lang/summernote-zh-CN.min.js',
+                        ]
+                    });
+                }]
+            }
+
         })
 
         //活动管理
@@ -150,30 +195,23 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             url: '/activity',
             template: '<div ui-view></div>',
             abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/activityManage/activityService.js',
+                            'app/module/activityManage/activityController.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.activity.list', {
             url: '/list',
             data: { pageTitle: '活动列表' },
             templateUrl: 'app/module/activityManage/list.html',
             controller:'ActivityListController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.css',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.js',
-                        ]
-                    });
-                }]
-            }
         })
         .state('app.activity.add', {
             url: '/add',
@@ -188,6 +226,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                             'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css',
                             'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css',
                             'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                            'assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js',
                             'assets/plugins/summernote/summernote.css',
                             'assets/plugins/summernote/summernote.min.js',
                             'assets/plugins/summernote/lang/summernote-zh-CN.min.js',
@@ -201,48 +240,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             data: { pageTitle: '活动编辑' },
             templateUrl: 'app/module/activityManage/add.html',
             controller:'EditActivityController',
-        })
-
-        //品牌管理
-        .state('app.brand', {
-            url: '/offer',
-            template: '<div ui-view></div>',
-            abstract: true
-        })
-        .state('app.brand.list', {
-            url: '/list',
-            data: { pageTitle: '优惠列表' },
-            templateUrl: 'app/module/brandManage/list.html',
-            controller:'BrandListController',
             resolve: {
                 service: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({
                         serie: true,
                         files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                        ]
-                    });
-                }]
-            }
-        })
-        .state('app.brand.add', {
-            url: '/add',
-            data: { pageTitle: '添加品牌' },
-            templateUrl: 'app/module/brandManage/add.html',
-            controller:'AddBrandController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/select2/dist/css/select2.min.css',
-                            'assets/plugins/select2/dist/js/select2.min.js',
+                            'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css',
+                            'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css',
+                            'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                            'assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js',
                             'assets/plugins/summernote/summernote.css',
                             'assets/plugins/summernote/summernote.min.js',
                             'assets/plugins/summernote/lang/summernote-zh-CN.min.js',
@@ -251,8 +257,41 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                 }]
             }
         })
+
+        //品牌管理
+        .state('app.brand', {
+            url: '/offer',
+            template: '<div ui-view></div>',
+            abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/brandManage/brandController.js',
+                            'app/module/brandManage/brandService.js',
+                            'assets/plugins/summernote/summernote.css',
+                            'assets/plugins/summernote/summernote.min.js',
+                            'assets/plugins/summernote/lang/summernote-zh-CN.min.js',
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('app.brand.list', {
+            url: '/list',
+            data: { pageTitle: '优惠列表' },
+            templateUrl: 'app/module/brandManage/list.html',
+            controller:'BrandListController',
+        })
+        .state('app.brand.add', {
+            url: '/add',
+            data: { pageTitle: '添加品牌' },
+            templateUrl: 'app/module/brandManage/add.html',
+            controller:'AddBrandController',
+        })
         .state('app.brand.edit', {
-            url: '/edit',
+            url: '/edit?id',
             data: { pageTitle: '品牌编辑' },
             templateUrl: 'app/module/brandManage/add.html',
             controller:'EditBrandController',
@@ -268,8 +307,12 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                     return $ocLazyLoad.load({
                         serie: true,
                         files: [
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.css',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.js',
+                            'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css',
+                            'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css',
+                            'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                            'assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js',
+                            'app/module/offerCodeManage/offerCodeService.js',
+                            'app/module/offerCodeManage/offerCodeController.js',
                         ]
                     });
                 }]
@@ -280,24 +323,6 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             data: { pageTitle: '优惠码列表' },
             templateUrl: 'app/module/offerCodeManage/list.html',
             controller:'OfferCodeListController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.css',
-                            'assets/plugins/bootstrap-select/bootstrap-select.min.js',
-                        ]
-                    });
-                }]
-            }
         })
         .state('app.offerCode.add', {
             url: '/add',
@@ -306,7 +331,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             controller:'AddOfferCodeController',
         })
         .state('app.offerCode.edit', {
-            url: '/edit',
+            url: '/edit?id',
             data: { pageTitle: '优惠码编辑' },
             templateUrl: 'app/module/offerCodeManage/add.html',
             controller:'EditOfferCodeController',
@@ -324,6 +349,17 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             url: '/operation',
             template: '<div ui-view></div>',
             abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/operationManage/operationService.js',
+                            'app/module/operationManage/operationController.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.operation.carousel', {
             url: '/carousel',
@@ -360,29 +396,24 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         .state('app.news', {
             url: '/news',
             template: '<div ui-view></div>',
-            abstract: true
+            abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/newsManage/newsService.js',
+                            'app/module/newsManage/newsController.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.news.list', {
             url: '/list',
             data: { pageTitle: '消息列表' },
             templateUrl: 'app/module/newsManage/list.html',
             controller:'NewsListController',
-            resolve: {
-                service: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        serie: true,
-                        files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                        ]
-                    });
-                }]
-            }
         })
         .state('app.news.push', {
             url: '/push',
@@ -407,13 +438,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                     return $ocLazyLoad.load({
                         serie: true,
                         files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
+                            'app/module/userManage/userService.js',
+                            'app/module/userManage/userController.js',
                         ]
                     });
                 }]
@@ -450,13 +476,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                     return $ocLazyLoad.load({
                         serie: true,
                         files: [
-                            'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                            'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                            'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                            'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                            'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                            'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
+                            'app/module/orderManage/orderService.js',
+                            'app/module/orderManage/orderController.js',
                         ]
                     });
                 }]
@@ -467,35 +488,41 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
             data: { pageTitle: '订单详情' },
             templateUrl: 'app/module/orderManage/detail.html',
             controller:'OrderDetailController',
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/orderManage/orderService.js',
+                            'app/module/orderManage/orderController.js',
+                        ]
+                    });
+                }]
+            }
         })
 
         //系统管理
         .state('app.system', {
             url: '/user',
             template: '<div ui-view></div>',
-            abstract: true
+            abstract: true,
+            resolve: {
+                service: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'app/module/systemManage/systemService.js',
+                            'app/module/systemManage/systemController.js',
+                        ]
+                    });
+                }]
+            }
         })
         .state('app.system.list', {
         url: '/list',
         data: { pageTitle: '管理员列表' },
         templateUrl: 'app/module/systemManage/list.html',
         controller:'ManageListController',
-        resolve: {
-            service: ['$ocLazyLoad', function($ocLazyLoad) {
-                return $ocLazyLoad.load({
-                    serie: true,
-                    files: [
-                        'assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css',
-                        'assets/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css',
-                        'assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css',
-                        'assets/plugins/DataTables/media/js/jquery.dataTables.js',
-                        'assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js',
-                        'assets/plugins/DataTables/extensions/Select/js/dataTables.select.min.js',
-                        'assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js',
-                    ]
-                });
-            }]
-        }
         })
         .state('app.system.add', {
             url: '/add',

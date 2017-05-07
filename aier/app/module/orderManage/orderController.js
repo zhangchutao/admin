@@ -3,15 +3,22 @@
  */
 
 //订单管理
-myApp.controller('OrderListController' , ['$scope' , '$state' , function ($scope , $state) {
-    angular.element(document).ready(function () {
-        console.log('订单管理');
-        var table = $('#courseTable');
-        if (table.length !== 0) {
-            dataTableInit(table , false)
-        }
-    });
-}])
+myApp.controller('OrderListController' , [
+    '$scope' ,
+    '$state' ,
+    'orderList' ,
+    '$timeout' ,
+    function ($scope , $state , orderList , $timeout) {
+        $timeout(function () {
+            $scope.orderList = orderList.getOrderList(); //获取表格数据数据
+        },1000)
+
+
+        $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+            dataTableInitData($('#orderTable') , false);
+        });
+
+    }])
 
 //订单详情
 myApp.controller('OrderDetailController' , ['$scope' , '$state' , function ($scope , $state) {

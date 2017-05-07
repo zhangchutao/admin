@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="title"> 消息标题 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="title" id="title" ng-model="data.title" placeholder="请输入消息标题" required />
+                            <input type="text" class="form-control" name="title" id="title" ng-model="pushNewData.title" placeholder="请输入消息标题" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -28,7 +28,16 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="newsIntr"> 消息简介 </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="newsIntr" rows="5"  id="newsIntr" ng-maxlength="200" ng-model="data.newsIntr"  ></textarea>
+                            <textarea class="form-control" name="newsIntr" rows="5"  id="newsIntr" ng-maxlength="200" ng-model="pushNewData.newsIntr"  ></textarea>
+                        </div>
+                        <div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-3">
+                                <div class="text-danger line-height-30" ng-messages="newsForm.newsIntr.$error" ng-if="newsForm.newsIntr.$touched">
+                                    <div ng-message="required">消息简介不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -39,7 +48,7 @@
                             <div class="clearfix">
                                 <div >
                                     <label for="offerCodeRadio" class="icheck-radio">
-                                        <input type="radio" id="offerCodeRadio" name="newsType" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <input type="radio" id="offerCodeRadio" name="newsType" value="offerCode" ng-model="pushNewData.type" ng-checked="true">
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">优惠码</div>
@@ -48,7 +57,7 @@
                                 </div>
                                 <div >
                                     <label for="reservationRadio" class="icheck-radio">
-                                        <input type="radio" id="reservationRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="reservationRadio" name="newsType" value="reservation" ng-model="pushNewData.type" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">预约</div>
@@ -57,7 +66,7 @@
                                 </div>
                                 <div >
                                     <label for="courseRadio" class="icheck-radio">
-                                        <input type="radio" id="courseRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="courseRadio" name="newsType" value="course" ng-model="pushNewData.type" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">课程卡</div>
@@ -66,14 +75,18 @@
                                 </div>
                                 <div >
                                     <label for="activityRadio" class="icheck-radio fl col-sm-2">
-                                        <input type="radio" id="activityRadio" name="newsType" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="activityRadio" name="newsType" value="activity" ng-model="pushNewData.type" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">活动</div>
                                         </div>
                                     </label>
-                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px">
-                                        <input type="text" class="form-control "  placeholder="活动链接" required />
+                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px" ng-if="showActivityLink">
+                                        <input type="text" class="form-control "  placeholder="活动链接" name="activityLink" ng-model="pushNewData.activityLink" required />
+                                        <div class="text-danger line-height-30" ng-messages="newsForm.activityLink.$error" ng-if="newsForm.activityLink.$touched">
+                                            <div ng-message="required">活动链接不能为空</div>
+                                            <div ng-messages-include="app/templates/formValidation.html"></div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -89,7 +102,7 @@
                             <div class="clearfix">
                                 <div >
                                     <label for="allUserRadio" class="icheck-radio">
-                                        <input type="radio" id="allUserRadio" name="pushUser" value="allUser" ng-model="activityForm.content" ng-checked="true">
+                                        <input type="radio" id="allUserRadio" name="pushUser" value="allUser" ng-model="pushNewData.obj" ng-checked="true">
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">所有用户</div>
@@ -98,14 +111,18 @@
                                 </div>
                                 <div >
                                     <label for="partUserRadio" class="icheck-radio fl col-sm-2">
-                                        <input type="radio" id="partUserRadio" name="pushUser" value="partUser" ng-model="activityForm.content" >
+                                        <input type="radio" id="partUserRadio" name="pushUser" value="partUser" ng-model="pushNewData.obj" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">部分用户</div>
                                         </div>
                                     </label>
-                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px">
-                                        <textarea class="form-control" name="description" rows="5"  id="description" ng-maxlength="200" ng-model="data.description"  ></textarea>
+                                    <div class="fl col-sm-10" style="padding-left: 0px;padding-right: 0px" ng-if="showObjArr">
+                                        <textarea class="form-control" name="user" rows="5"  id="description" ng-maxlength="200" ng-model="pushNewData.objArr" placeholder="用户电话号码,如有多个用逗号隔开" required></textarea>
+                                        <div class="text-danger line-height-30" ng-messages="newsForm.user.$error" ng-if="newsForm.user.$touched">
+                                            <div ng-message="required">用户不能为空</div>
+                                            <div ng-messages-include="app/templates/formValidation.html"></div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -115,7 +132,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">保存</button>
+                            <button type="submit" class="btn btn-success width-xs fr"  ng-click="save()" ng-disabled="newsForm.$invalid">保存</button>
                         </div>
                     </div>
 

@@ -6,7 +6,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <button type="file" ngf-select="uploadImg($file)" class="btn btn-xs btn-icon btn-circle btn-success">+
+                        <button type="file" ng-click="everListener.addPopularCourse()" class="btn btn-xs btn-icon btn-circle btn-success">+
                         </button>
                     </div>
                     <h4 class="panel-title">首页热门课程</h4>
@@ -21,23 +21,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            <td class="text-align-center"><input class="" style="width: 20px;" type="text" ></td>
-                            <td class="text-align-center">
-                                <select class="form-control" name="brand"  id="brand" ng-model="data.brand">
-                                    <option value="">--请选择机构类别--</option>
-                                    <option value="foo">Foo</option>
-                                    <option value="bar">Bar</option>
-                                </select>
-                            </td>
-                            <td style="text-align: center"><a href="" ng-click="del(ad)">删除</a></td>
+                        <!--原本请求数据-->
+                        <tr ng-repeat="items in popularCourse">
+                            <td class="text-align-center" width="20%"><input class="" style="width: 30px; " type="number" ng-model="items.sort" min="0"></td>
+                            <td class="text-align-center" ng-bind="items.course" width="50%"></td>
+                            <td style="text-align: center" width="30$"><a href="" ng-click="everListener.delCourse(items,true)">删除</a></td>
                         </tr>
+                        <!--新添加的数据-->
+                        <tr ng-show="shoeAdd" ng-repeat="items in addPopularCourseArr"  on-finish-render-filters>
+                            <td class="text-align-center"><input class="" style="width: 30px; " type="number" ng-model="items.sort"></td>
+                            <td class="text-align-center">
+                                <select class="form-control popularCourse" id="popularCourse{{$index}}" style="width: 80%"></select>
+                            </td>
+                            <td style="text-align: center"><a href="" ng-click="everListener.delCourse(items,false)">删除</a></td>
+                        </tr>
+
                         </tbody>
                     </table>
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">保存</button>
+                            <button type="submit" class="btn btn-success width-xs fr"  ng-click="everListener.save()">保存</button>
                         </div>
                     </div>
                 </div>

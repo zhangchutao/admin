@@ -3,10 +3,21 @@
         <!-- begin panel -->
         <div class="panel panel-inverse">
             <div class="panel-heading">
-                <h4 class="panel-title">添加机构</h4>
+                <div class="panel-heading-btn" ng-show="showBtn">
+                    <button type="file" class="btn btn-xs  btn-success" ng-click="evenListener.copy()" ng-bind="copyText"></button>
+                </div>
+                <h4 class="panel-title" ng-bind="text"></h4>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" name="institutionForm"  >
+                    <!--所属品牌 -->
+                    <div class="form-group" ng-show="isCopy">
+                        <label class="control-label col-sm-2" for="copy"> 复制机构 </label>
+                        <div class="col-sm-9">
+                            <select class=" form-control" id="copy"></select>
+                        </div>
+                    </div>
+
                     <!--机构名称-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name"> 机构名称 </label>
@@ -28,15 +39,18 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="brand"> 所属品牌 </label>
                         <div class="col-sm-9">
-                            <!--<select class="form-control brand" name="brand"  id="brand" ng-model="institutionData.brand">-->
-                                <select class=" brand form-control" id="brand"></select>
-                            <!--<option ng-repeat="items in brand" value="{{items.id}}">{{items.brand}}</option>-->
-                            </select>
+                            <select class=" form-control" id="brand"></select>
                         </div>
                     </div>
                     <!--机构区域商圈-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 机构区域商圈 </label>
+                        <div class="col-sm-5">
+                            <select class=" form-control" id="area"></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class=" form-control" id="addres"></select>
+                        </div>
                         <!--<div class="col-sm-5">-->
                             <!--<select name="province" class="form-control" ng-init="province.id='0'" ng-model="province.id" ng-change="provinceChange(province.id);city.id='0';" ng-options="id as name for (id,name) in provinceArr"></select>-->
                         <!--</div>-->
@@ -44,20 +58,20 @@
                             <!--<select name="city" class="form-control" ng-init="city.id='0'" ng-model="city.id" ng-change="cityChange(city.id);" ng-options="id as name for (id,name) in getCityArr"></select>-->
                         <!--</div>-->
 
-                        <div class="col-sm-5">
-                            <select class="businessArea form-control" ></select>
+                        <!--<div class="col-sm-5">-->
+                            <!--&lt;!&ndash;<select class="businessArea form-control" ></select>&ndash;&gt;-->
                             <!--<select name="province" class="form-control" ng-model="institutionData.businessArea" ng-change="areaChange(institutionData.businessArea)" >-->
                                 <!--<option value="">&#45;&#45;区&#45;&#45;</option>-->
-                                <!--<option ng-repeat="items in area" value="{{items}}">{{items.name}}</option>-->
+                                <!--<option ng-repeat="items in area" value="{{items}}">{{items.text}}</option>-->
                             <!--</select>-->
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="businessAddress form-control" ></select>
+                        <!--</div>-->
+                        <!--<div class="col-sm-4">-->
+                            <!--&lt;!&ndash;<select class="businessAddress form-control" ></select>&ndash;&gt;-->
                             <!--<select name="city" class="form-control" ng-model="institutionData.businessAddress" ng-change="addressChangeChange(institutionData.businessAddress);" >-->
                                 <!--<option value="">&#45;&#45;地方名&#45;&#45;</option>-->
-                                <!--<option ng-repeat="items in businessAddress" value="{{items.id}}">{{items.name}}</option>-->
+                                <!--<option ng-repeat="items in businessAddress" value="{{items.id}}">{{items.text}}</option>-->
                             <!--</select>-->
-                        </div>
+                        <!--</div>-->
                     </div>
 
                     <!--类别 -->
@@ -126,7 +140,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="studentNum"> 学生人数 </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" name="studentNum" id="studentNum" placeholder="例如 180" ng-model="institutionData.studentNum"  required/>
+                            <input type="number" class="form-control" name="studentNum" id="studentNum" placeholder="例如 180" ng-model="institutionData.studentNum" min="0" required/>
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -142,7 +156,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="contact"> 电话号码 </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" ng-model="institutionData.contact" name="contact" id="contact" placeholder="请输入电话号码" required  phone/>
+                            <input type="text" class="form-control" ng-model="institutionData.contact" name="contact" id="contact" placeholder="请输入电话号码" required  phone/>
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -160,16 +174,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 标签 </label>
                         <div class="col-sm-9" >
-                            <select class="js-example-basic-single js-states form-control"  multiple="multiple" ng-model="institutionData.tags" name="tags" id="tags" required></select>
-                        </div>
-                        <div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-md-9">
-                                <div class="line-height-30 text-danger" ng-messages="institutionForm.tags.$error" ng-if="institutionForm.tags.$touched">
-                                    <div ng-message="required">标签不能为空</div>
-                                    <div ng-messages-include="app/templates/formValidation.html"></div>
-                                </div>
-                            </div>
+                            <select class="form-control"  multiple="multiple" ng-model="institutionData.tags" name="tags" id="tags" required></select>
                         </div>
                     </div>
 
@@ -219,35 +224,24 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 图片 <br>(首张作为封面,640*480) </label>
                         <div class="col-sm-9" >
-                            <div class="z_photo upimg-div clear" >
+                            <div class="z_photo upimg-div clearfix"  ng-class="{'border-dashed':showBorder}">
                                 <!--选择后展示的图片-->
-
-                                <div ng-repeat="images in imgArray">
-                                    <section class="up-section fl " ng-repeat="oneImage in images">
-                                        <!--hover的黑色透明浮层-->
-                                        <!--<span class="up-span"></span>-->
+                                <div ng-repeat="images in imgArray" ng-init="outIndex = $index">
+                                    <section class="up-section fl " ng-repeat="oneImage in images" ng-class="{'loading': outIndex+1 == imgArray.length}">
                                         <i class="ion-ios-close fa-2x text-success close-upimg"></i>
                                         <!--这里设置成点击可以再次上次图片,如果不要这个功能,那么可以去掉外面这一层div-->
-                                        <div class="fl" type="file" ngf-select="uploadImg($file)" ngf-pattern="'image/*'">
+                                        <div class="fl" type="file" ngf-select="evenListener.uploadImg($files )" ngf-pattern="'image/*'">
                                             <img  ngf-src="oneImage" alt="" class="up-img " >
                                         </div>
+
                                     </section>
                                 </div>
-
-                                <section class="up-section fl " ng-class="{'loading': loading}" ng-repeat="oneImage in curImg">
-                                    <!--删除按钮-->
-                                    <i class="ion-ios-close fa-2x text-success close-upimg"></i>
-                                    <div class="fl" type="file" ngf-select="uploadImg($file)" ngf-pattern="'image/*'">
-                                        <img  ngf-src="oneImage" alt="" class="up-img " >
-                                    </div>
-
-                                </section>
 
 
                                 <!--上传图片-->
                                 <section class="z_file fl">
                                     <img src="/assets/img/imgUpload/a11.png" style="display: block;width: 180px;height: 180px;margin-bottom: 10px;margin-right: 10px" >
-                                    <input type="file" name="file" id="file" class="file" ngf-select="uploadImg($files)" ngf-pattern="'image/*'"/>
+                                    <input type="file" name="file"  class="file" ngf-select="evenListener.uploadImg($file)" ngf-pattern="'image/*'"/>
                                 </section>
                             </div>
                         </div>
@@ -255,7 +249,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="save()">保存</button>
+                            <button type="submit" class="btn btn-success width-xs fr"  ng-click="evenListener.save()">保存</button>
                         </div>
                     </div>
 

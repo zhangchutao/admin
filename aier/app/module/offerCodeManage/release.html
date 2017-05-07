@@ -6,32 +6,12 @@
                 <h4 class="panel-title">发放优惠码</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" name="offerCodeForm"  >
-                    <!--品牌名称-->
+                <form class="form-horizontal" name="offerCodeReleaseForm"  >
+                    <!--优惠码标题-->
                     <div class="form-group">
                         <label class="control-label col-sm-2" > 优惠码标题 </label>
                         <div class="col-sm-9">
-                            <select class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-white">
-                                <option value="" selected>Select a Country</option>
-                                <option value="AF">Afghanistan</option>
-                                <option value="AL">Albania</option>
-                                <option value="DZ">Algeria</option>
-                                <option value="AS">American Samoa</option>
-                                <option value="AD">Andorra</option>
-                                <option value="AO">Angola</option>
-                                <option value="AI">Anguilla</option>
-                                <option value="AQ">Antarctica</option>
-                                <option value="AG">Antigua and Barbuda</option>
-                            </select>
-                        </div>
-                        <div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-md-3">
-                                <div class="text-danger line-height-30" ng-messages="offerCodeForm.title.$error" ng-if="offerCodeForm.title.$touched">
-                                    <div ng-message="required">优惠码标题不能为空</div>
-                                    <div ng-messages-include="app/templates/formValidation.html"></div>
-                                </div>
-                            </div>
+                            <select class="form-control " id="offerCodeTitle" ></select>
                         </div>
                     </div>
 
@@ -42,7 +22,7 @@
                             <div class="clearfix">
                                 <div class="fl" >
                                     <label for="linkRadio" class="icheck-radio">
-                                        <input type="radio" id="linkRadio" name="content" value="link" ng-model="activityForm.content" ng-checked="true">
+                                        <input type="radio" id="linkRadio" name="content" value='all' ng-model="releaseData.isAllUser" ng-checked="true">
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">所有用户</div>
@@ -51,7 +31,7 @@
                                 </div>
                                 <div class="fl margin-left-20" >
                                     <label for="noteRadio" class="icheck-radio">
-                                        <input type="radio" id="noteRadio" name="content" value="note" ng-model="activityForm.content" >
+                                        <input type="radio" id="noteRadio" name="content" value='part' ng-model="releaseData.isAllUser" >
                                         <div class="icheck-media"></div>
                                         <div class="icheck-inner">
                                             <div class="icheck-title">指定用户</div>
@@ -62,8 +42,12 @@
                             </div>
 
                             <!--指定用户-->
-                            <div style="margin-top: 20px">
-                                <textarea class="form-control" name="description" rows="5"  id="description" ng-maxlength="200" ng-model="data.description"  placeholder="用户电话号码,如有多个用逗号隔开"></textarea>
+                            <div ng-if="isShow" style="margin-top: 20px">
+                                <textarea class="form-control" name="account" rows="5"  id="description" ng-maxlength="200" ng-model="releaseData.account"  placeholder="用户电话号码,如有多个用逗号隔开" required></textarea>
+                                <div class="text-danger line-height-30" ng-messages="offerCodeReleaseForm.account.$error" ng-if="offerCodeReleaseForm.account.$touched">
+                                    <div ng-message="required">指定用户不能为空</div>
+                                    <div ng-messages-include="app/templates/formValidation.html"></div>
+                                </div>
                             </div>
                         </div>
 
@@ -74,7 +58,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">发放</button>
+                            <button type="submit" class="btn btn-success width-xs fr" ng-disabled="offerCodeReleaseForm.$invalid" ng-click="released()">发放</button>
                         </div>
                     </div>
 

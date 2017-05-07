@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email"> 邮箱 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="email" id="email" ng-model="data.email" placeholder="请输入邮箱" required />
+                            <input type="text" class="form-control" name="email" id="email" ng-model="addManageData.email" placeholder="请输入邮箱" required email/>
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="password"> 密码 </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="password" id="password" ng-model="data.password" placeholder="请设置密码" required />
+                            <input type="number" class="form-control" name="password" id="password" ng-model="addManageData.password" placeholder="请设置密码" required />
                         </div>
                         <div>
                             <div class="col-sm-2"></div>
@@ -44,7 +44,7 @@
                     <!--按钮-->
                     <div class="form-group m-b-0">
                         <div class="col-sm-11">
-                            <button type="submit" class="btn btn-success width-xs " style="float:right" ng-click="a()">添加</button>
+                            <button type="submit" class="btn btn-success width-xs fr"  ng-click="a()" ng-disabled="systemForm.$invalid">添加</button>
                         </div>
                     </div>
 

@@ -9,7 +9,7 @@
                 </div>
                 <div class="panel-body">
                     <!--表格-->
-                    <table id="courseTable" class="table table-striped table-bordered nowrap " width="100%" >
+                    <table id="userTable" class="table table-striped table-bordered nowrap " width="100%" >
                         <thead>
                         <tr>
                             <th>#</th>
@@ -21,20 +21,12 @@
                         </tr>
                         </thead>
                         <tbody >
-                        <tr class="odd gradeX">
-                            <td >1</td>
-                            <td >13246707080</td>
-                            <td >天赐</td>
-                            <td >同心飞扬(盐田)青少年宫-默认班级</td>
-                            <td >2016-14-15</td>
-                            <td><a >编辑</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td >2</td>
-                            <td >13246707090</td>
-                            <td >天赐</td>
-                            <td >同心飞扬(盐田)青少年宫-默认班级</td>
-                            <td >2016-14-15</td>
+                        <tr class="odd gradeX" ng-repeat="items in userList" on-finish-render-filters>
+                            <td ng-bind="$index">1</td>
+                            <td ng-bind="items.phone">13246707080</td>
+                            <td ng-bind="items.name">天赐</td>
+                            <td ng-bind="items.institution">同心飞扬(盐田)青少年宫-默认班级</td>
+                            <td ng-bind="items.loginUpTime">2016-14-15</td>
                             <td><a >编辑</a></td>
                         </tr>
                         </tbody>
